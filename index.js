@@ -1,6 +1,7 @@
 var promise = require('promises-a');
 var emitter = require('emitter');
 
+module.exports = imgur;
 function imgur(apiKey) {
   function upload(file) {
     var def = promise();
