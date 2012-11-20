@@ -8,7 +8,12 @@ function imgur(apiKey) {
     var def = promise();
     emitter(def.promise);
     try {
-      if (!file || !file.type.match(/image.*/)) {
+      if (!file)) {
+        var err = new Error('You must supply an image to upload.');
+        err.code = 'MissingFile';
+        throw err;
+      }
+      if (!file.type.match(/image.*/)) {
         var err = new Error('Invalid file type, imgur only accepts images.');
         err.code = 'InvalidFileType';
         throw err;
