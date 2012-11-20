@@ -4,7 +4,10 @@
   "description": "Imgur image upload component",
   "version": "0.0.1",
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "ForbesLindesay/promises-a": "*",
+    "component/emitter": "*"
+  },
   "development": {},
   "scripts": [
     "index.js"
