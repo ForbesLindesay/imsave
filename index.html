@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-    </style>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
   </head>
   <body>
     <input id="picture" type="file"/></br>
     <button id="submit">Upload</button>
+    <pre><code id="response"></code></pre>
+    <img id="image" width="200"/>
     <script src="https://component.jit.su/ForbesLindesay/imgur/download/latest.js"></script>
     <script>
       function id(ID) {
@@ -15,10 +17,43 @@
       var upload = imgur('08218b920f18cbe2af19ab4a60f906c2').upload;
       id('submit').addEventListener('click', function () {
         var req = upload(id('picture').files[0])
-        req.done(function (res) {
-          console.log(res);
-        });
+        req.done(setResponse, setError);
       }, false);
+
+      function setResponse(obj) {
+        id('response').innerHTML = hljs.highlight('javascript', prettyPrint(obj)).value;
+        id('image').src = obj.links.original;
+      }
+      function setError(err) {
+        id('response').innerHTML = 'Error thrown:\n' + hljs.highlight('javascript', prettyPrint({
+          code: err.code,
+          message: err.message
+        })).value;
+      }
+      function prettyPrint(obj, indent) {
+        indent = indent || 0;
+        indent++;
+        if (obj && typeof obj === 'object') {
+          if (Array.isArray(obj)) {
+            return '[\n' + repeat('  ', indent) +
+              obj.map(function (o) { return prettyPrint(o, indent); }).join(',\n' + repeat('  ', indent)) +
+              ']';
+          } else {
+            return '{\n' + repeat('  ', indent) + 
+              Object.keys(obj).map(function (key) { return key + ': ' + prettyPrint(obj[key], indent)})
+                .join(',\n' + repeat('  ', indent)) + '\n' + repeat('  ', indent - 1) + '}'
+          }
+        } else {
+          return JSON.stringify(obj);
+        }
+      }
+      function repeat(str, no) {
+        var buf = '';
+        for (var i = 0; i < no; i++) {
+          buf += str;
+        }
+        return buf;
+      }
     </script>
   </body>
 </html>
