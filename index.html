@@ -5,17 +5,19 @@
     </style>
   </head>
   <body>
-    <form>
-      <input id="picture" type="file"/>
-      <button id="submit">Upload</button>
-    </form>
+    <input id="picture" type="file"/></br>
+    <button id="submit">Upload</button>
     <script src="https://component.jit.su/ForbesLindesay/imgur/download/latest.js"></script>
     <script>
       function id(ID) {
         return document.getElementById(ID);
       }
+      var upload = imgur('08218b920f18cbe2af19ab4a60f906c2').upload;
       id('submit').addEventListener('click', function () {
-        console.log('click');
+        var req = upload(id('picture'))
+        req.done(function (res) {
+          console.log(res);
+        });
       }, false);
     </script>
   </body>
