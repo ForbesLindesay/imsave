@@ -24,7 +24,7 @@ function imgur(apiKey) {
         def.reject(ex);
       }
     }
-    xhr.onerror(def.reject);
+    xhr.onerror = def.reject;
     xhr.upload.onprogress = function (e) {
       e.perecent = e.loaded / e.total * 100;
       def.promise.emit('progress', e);
