@@ -14,7 +14,7 @@
       }
       var upload = imgur('08218b920f18cbe2af19ab4a60f906c2').upload;
       id('submit').addEventListener('click', function () {
-        var req = upload(id('picture'))
+        var req = upload(id('picture').files[0])
         req.done(function (res) {
           console.log(res);
         });
