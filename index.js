@@ -34,6 +34,9 @@ function imgur(apiKey) {
       }
       def.promise.abort = function () {
         xhr.abort();
+        var err = new Error('Image upload aborted');
+        err.code = 'UploadAborted';
+        def.reject(err);
       };
 
       xhr.send(fd);
