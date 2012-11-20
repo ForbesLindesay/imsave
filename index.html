@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+    <form>
+      <input id="picture" type="file"/>
+      <button id="submit">Upload</button>
+    </form>
+    <script src="https://component.jit.su/ForbesLindesay/imgur/download/latest.js"></script>
+    <script>
+      function id(ID) {
+        return document.getElementById(ID);
+      }
+      id('submit').addEventListener('click', function () {
+        console.log('click');
+      }, false);
+    </script>
+  </body>
+</html>
