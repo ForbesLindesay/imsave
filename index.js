@@ -8,7 +8,7 @@ function imgur(apiKey) {
     var def = promise();
     emitter(def.promise);
     try {
-      if (!file)) {
+      if (!file) {
         var err = new Error('You must supply an image to upload.');
         err.code = 'MissingFile';
         throw err;
