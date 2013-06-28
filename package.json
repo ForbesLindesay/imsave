@@ -1,0 +1,29 @@
+{
+  "name": "ForbesLindesay",
+  "version": "0.0.0",
+  "description": "Imgur image upload",
+  "keywords": [],
+  "dependencies": {
+    "concat-stream": "~1.0.0",
+    "promise": "~3.1.0",
+    "hyperquest": "~0.1.6",
+    "form-data": "0.0.10"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "browserify-middleware": "~1.13.0",
+    "express": "~3.3.1"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForbesLindesay/ForbesLindesay.git"
+  },
+  "browser": {
+    "./lib/post.js": "./lib/post-browser.js"
+  },
+  "author": "ForbesLindesay",
+  "license": "MIT"
+}

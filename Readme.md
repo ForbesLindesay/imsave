@@ -1,87 +1,65 @@
+# imsave
 
-# imgur
+Imgur image upload for node.js and the browser (via browserify).
 
-  Imgur image upload component
+[![Build Status](https://travis-ci.org/ForbesLindesay/imsave.png?branch=master)](https://travis-ci.org/ForbesLindesay/imsave)
+[![Dependency Status](https://gemnasium.com/ForbesLindesay/imsave.png)](https://gemnasium.com/ForbesLindesay/imsave)
+[![NPM version](https://badge.fury.io/js/imsave.png)](http://badge.fury.io/js/imsave)
 
 ## Installation
 
-    $ component install ForbesLindesay/imgur
+To install, use:
 
-## Usage
+    npm install imsave
 
-  ```html
-  <input id="pictureIn" type="file" />
-  <img id="pictureOut"/>
-  <button id="submit">Upload</button>
-  ```
+You must then also acquire a ClientID from https://api.imgur.com/oauth2/addclient
 
-  ```javascript
-  var imgur = require('imgur');
-  var upload = imgur('your api key from http://api.imgur.com').upload;
+## Sever Usage
 
-  var submit = document.getElementById('submit');
-  var input = document.getElementById('pictureIn');
-  var output = document.getElementById('pictureOut');
-  
-  submit.addEventListener('click', function () {
-    upload(input.files[0])
-      .done(function (res) {
-        output.src = res.links.original;
-      }, function (err) {
-        //handle error here
-        throw err;  
-      });
-  }, false);
-  ```
+```js
+var imgur = require('imsave')('ClientID')
 
-## API
+imgur(fs.readFileSync('image.jpeg'), function (err, url) {
+  if (err) throw err
+  console.log('URL for image: ' + url)
+})
 
-### imgur(apikey)
+//or
 
-  Return an instance of the imgur service object (`Imgur`).
+imgur(fs.createReadStream('image.jpeg'), function (err, url) {
+  if (err) throw err
+  console.log('URL for image: ' + url)
+})
+```
 
-### Imgur#upload(file)
+## Client Usage
 
-  Upload a file object retrieved from drag and drop or a file input.  Returns an `ImgurRequest`.  If the file is not a valid file, the returned request will be rejected with `err.code == 'InvalidFileType'` or `err.code == 'MissingFile'` depending on whether a file-object was supplied.
+Using Browserify
 
-### ImgurRequest#then(callback, errback)
+```html
+<input id="pictureIn" type="file" />
+<img id="pictureOut"/>
+<button id="submit">Upload</button>
+```
 
-  ImgurRequest is a [promise](https://github.com/promises-aplus/promises-spec) and thus the then-method conforms fully to this spec.  If the request is successful, it will respond with an object that looks like:
+```js
+var imgur = require('imsave')('ClientID')
 
-  ```javascript
-  {
-    image: {
-      name: null,
-      title: null,
-      caption: null,
-      hash: "JNBkq",
-      deletehash: "yNbwhKYuMN4VdJ5",
-      datetime: "2012-11-20 20:59:07",
-      type: "image/png",
-      animated: "false",
-      width: 578,
-      height: 226,
-      size: 16204,
-      views: 0,
-      bandwidth: 0
-    },
-    links: {
-      original: "http://i.imgur.com/JNBkq.png",
-      imgur_page: "http://imgur.com/JNBkq",
-      delete_page: "http://imgur.com/delete/yNbwhKYuMN4VdJ5",
-      small_square: "http://i.imgur.com/JNBkqs.jpg",
-      large_thumbnail: "http://i.imgur.com/JNBkql.jpg"
-    }
-  }
-  ```
+var submit = document.getElementById('submit')
+var input = document.getElementById('pictureIn')
+var output = document.getElementById('pictureOut')
 
-### ImgurRequest#done(callback, errback)
+submit.addEventListener('click', function () {
+  imgur(input.files[0], function (err, res) {
+    if (err) throw err //handle error here
+    output.src = res
+  })
+}, false)
+```
 
-  This method is like `.then` except it doesn't return a promise for chaining, and won't swallow exceptions.  Use this in preference to `.then` if you're not doing other async operations when the upload completes.
+## Promises
 
-### ImgurRequest#abort()
-
-  Aborts the request and causes the promise to be rejected with an exception that has `err.code == 'UploadAborted'`.
+If the callback is omitted, a [Promises/A+](http://promises-aplus.github.io/promises-spec/) promise is returned.  This is very useful for composing multiple asynchronous operations, especially if they are in parallel.
 
 ## License
 
