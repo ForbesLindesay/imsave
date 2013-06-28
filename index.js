@@ -8,7 +8,7 @@ var post = require('./lib/post')
 module.exports = imgur;
 function imgur(clientID, file, callback) {
   if (arguments.length === 1) {
-    return function (file, callback) { imgur(clientID, file, callback) }
+    return function (file, callback) { return imgur(clientID, file, callback) }
   }
   return new Promise(function (resolve, reject) {
     if (!file) {
