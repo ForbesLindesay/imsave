@@ -1,6 +1,6 @@
 {
-  "name": "ForbesLindesay",
-  "version": "0.0.0",
+  "name": "imsave",
+  "version": "2.0.0",
   "description": "Imgur image upload",
   "keywords": [],
   "dependencies": {
@@ -11,15 +11,15 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "browserify-middleware": "~1.13.0",
-    "express": "~3.3.1"
+    "browserify-middleware": "*",
+    "express": "*"
   },
   "scripts": {
     "test": "mocha -R spec"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ForbesLindesay/ForbesLindesay.git"
+    "url": "https://github.com/ForbesLindesay/imsave.git"
   },
   "browser": {
     "./lib/post.js": "./lib/post-browser.js"
