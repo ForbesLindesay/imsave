@@ -3,8 +3,8 @@
 Imgur image upload for node.js and the browser (via browserify).
 
 [![Build Status](https://travis-ci.org/ForbesLindesay/imsave.png?branch=master)](https://travis-ci.org/ForbesLindesay/imsave)
-[![Dependency Status](https://gemnasium.com/ForbesLindesay/imsave.png)](https://gemnasium.com/ForbesLindesay/imsave)
-[![NPM version](https://badge.fury.io/js/imsave.png)](http://badge.fury.io/js/imsave)
+[![Dependency Status](https://david-dm.org/ForbesLindesay/imsave.png)](https://gemnasium.com/ForbesLindesay/imsave)
+[![NPM version](https://img.shields.io/npm/v/imsave.svg)](https://www.npmjs.com/package/imsave)
 
 ## Installation
 
