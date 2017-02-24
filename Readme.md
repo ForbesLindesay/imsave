@@ -1,5 +1,7 @@
 # imsave
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ForbesLindesay/imsave.svg)](https://greenkeeper.io/)
+
 Imgur image upload for node.js and the browser (via browserify).
 
 [![Build Status](https://img.shields.io/travis/ForbesLindesay/imsave/master.svg)](https://travis-ci.org/ForbesLindesay/imsave)
