@@ -4,10 +4,10 @@
   "description": "Imgur image upload",
   "keywords": [],
   "dependencies": {
-    "concat-stream": "~1.0.0",
-    "promise": "~3.1.0",
-    "hyperquest": "~0.1.6",
-    "form-data": "0.0.10"
+    "concat-stream": "~1.6.0",
+    "promise": "~7.1.1",
+    "hyperquest": "~2.1.2",
+    "form-data": "2.1.2"
   },
   "devDependencies": {
     "mocha": "*",
